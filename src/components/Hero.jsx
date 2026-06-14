@@ -1,6 +1,6 @@
-import { useEffect, useRef, useCallback } from 'react'
-import './Hero.css'
-import heroBg from '../assets/hero.jpg'
+import { useEffect, useRef, useCallback } from 'react';
+import './Hero.css';
+import heroBg from '../assets/hero.JPG';
 
 const Hero = () => {
   const heroRef = useRef(null)
