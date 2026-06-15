@@ -1,5 +1,7 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 import './Experience.css'
+
+import logoNIFT from '../assets/icons/NIFT_Logo.svg'
 
 /* 3D icon images */
 import iconFigma from '../assets/icons/figma.png'
@@ -61,48 +63,12 @@ const experiences = [
 ]
 
 const ExperienceCard = ({ exp, index }) => {
-  const cardRef = useRef(null)
-
-  const handleMouseMove = useCallback((e) => {
-    const card = cardRef.current
-    if (!card) return
-
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotateX = ((y - centerY) / centerY) * -8
-    const rotateY = ((x - centerX) / centerX) * 8
-
-    requestAnimationFrame(() => {
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`
-      card.style.setProperty('--mouse-x', `${x}px`)
-      card.style.setProperty('--mouse-y', `${y}px`)
-    })
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    const card = cardRef.current
-    if (!card) return
-
-    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)'
-  }, [])
-
   return (
     <div
       className="exp-card"
       id={`exp-card-${exp.id}`}
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ '--card-accent': exp.accent, animationDelay: `${0.15 * index}s` }}
+      style={{ '--card-accent': exp.accent }}
     >
-      {/* Mouse-tracking glow overlay */}
-      <div className="exp-card-glow" />
-
-
       {/* Card content */}
       <div className="exp-card-inner">
         {/* Header row */}
@@ -125,14 +91,36 @@ const ExperienceCard = ({ exp, index }) => {
         </p>
 
         {/* Highlights */}
-        <ul className="exp-highlights">
-          {exp.highlights.map((h, i) => (
-            <li key={i} className="exp-highlight-item">
-              <span className="exp-highlight-bullet" style={{ background: exp.accent }} />
-              <span>{h}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="exp-highlights-container">
+          <ul className="exp-highlights">
+            {exp.highlights.slice(0, 1).map((h, i) => (
+              <li key={i} className="exp-highlight-item">
+                <span className="exp-highlight-bullet" style={{ background: exp.accent }} />
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+
+          {exp.highlights.length > 1 && (
+            <>
+              <div className="exp-highlights-collapsed-section">
+                <div className="exp-highlights-collapsed-inner">
+                  <ul className="exp-highlights">
+                    {exp.highlights.slice(1).map((h, i) => (
+                      <li key={i + 1} className="exp-highlight-item">
+                        <span className="exp-highlight-bullet" style={{ background: exp.accent }} />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="exp-highlights-expand-hint">
+                <span className="exp-expand-icon">+</span> {exp.highlights.length - 1} more {exp.highlights.length - 1 === 1 ? 'achievement' : 'achievements'}
+              </div>
+            </>
+          )}
+        </div>
 
         {/* Tags */}
         <div className="exp-tags">
@@ -256,24 +244,115 @@ const Experience = () => {
             ))}
           </div>
 
-          {/* Education & Certifications */}
-          <div className="experience-education">
-            <div className="edu-card">
-              <div className="edu-card-glow" />
-              <div className="edu-card-inner">
-                <h4 className="edu-label">Education</h4>
-                <h3 className="edu-degree">B.Des — Bachelor of Design</h3>
-                <p className="edu-institution">National Institute of Fashion Technology (NIFT)</p>
-                <span className="edu-period">2019 — 2023</span>
+          {/* Education & Achievements Section */}
+          <div className="edu-achievements-section">
+            <h3 className="edu-section-title">Education & Achievements</h3>
+            <div className="edu-achievements-grid">
+              {/* B.Des Card (Left, wider) */}
+              <div className="edu-big-card">
+                <div className="edu-big-card-glow" />
+                <div className="edu-big-card-inner">
+                  <div className="edu-big-card-content">
+                    <span className="edu-label">Education</span>
+                    <h3 className="edu-degree-title">B.Des</h3>
+                    <h4 className="edu-degree-subtitle">Bachelor of Design</h4>
+                    <p className="edu-institution-name">
+                      National Institute of Fashion Technology (NIFT)
+                    </p>
+                    <span className="edu-year-badge">2019 — 2023</span>
+                    <p className="edu-description">
+                      Specialized in User Experience, Visual Communication, and Interactive Product Design. Combined classic design sensibilities with modern digital execution.
+                    </p>
+                  </div>
+                  <div className="edu-logo-container">
+                    <img src={logoNIFT} alt="NIFT Logo" className="nift-logo" />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="edu-card">
-              <div className="edu-card-glow" />
-              <div className="edu-card-inner">
-                <h4 className="edu-label">Certification</h4>
-                <h3 className="edu-degree">UI Design Certification</h3>
-                <p className="edu-institution">Ministry of Electronics & IT, Govt. of India</p>
-                <span className="edu-period">Certified</span>
+
+              {/* Tall Schooling Card (Right, narrower) */}
+              <div className="tall-certification-card">
+                <div className="tall-certification-glow" />
+                <div className="tall-certification-inner">
+                  <div className="cert-content">
+                    <span className="cert-label">Schooling</span>
+                    <h4 className="cert-title">Class XII</h4>
+                    <p className="cert-org">Senior Secondary Education, CBSE</p>
+                    <div className="cert-capsules">
+                      <span className="cert-capsule">Science & Math</span>
+                      <span className="cert-capsule">CBSE Board</span>
+                      <span className="cert-capsule">2017 — 2019</span>
+                    </div>
+                  </div>
+                  <div className="cert-graphic-area">
+                    <div className="cert-arrow-btn">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="cert-arrow-icon">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </div>
+                    <div className="cert-badge-vertical">
+                      Schooling
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievement 1: Photography Club President */}
+              <div className="achievement-card">
+                <div className="ach-card-glow" />
+                <div className="ach-card-inner">
+                  <div className="ach-header-vertical">
+                    <div className="ach-vertical-text">Leadership</div>
+                    <div className="ach-header-content">
+                      <span className="ach-label">Club President</span>
+                      <h4 className="ach-title">Photography Club</h4>
+                      <p className="ach-org">NIFT Delhi</p>
+                    </div>
+                  </div>
+                  <div className="ach-footer">
+                    <span className="ach-badge-pill">President</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievement 2: 10+ Digital Projects */}
+              <div className="achievement-card">
+                <div className="ach-card-glow" />
+                <div className="ach-card-inner">
+                  <div className="ach-header-vertical">
+                    <div className="ach-vertical-text">Impact</div>
+                    <div className="ach-header-content">
+                      <span className="ach-label">Freelance & Client Works</span>
+                      <h4 className="ach-title">10+ Projects</h4>
+                      <p className="ach-org">Branding & Ad Campaign Projects</p>
+                    </div>
+                  </div>
+                  <div className="ach-footer">
+                    <span className="ach-badge-pill">Completed</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievement 3: UI Design Certification */}
+              <div className="achievement-card">
+                <div className="ach-card-glow" />
+                <div className="ach-card-inner">
+                  <div className="ach-header-vertical">
+                    <div className="ach-vertical-text">Certification</div>
+                    <div className="ach-header-content">
+                      <span className="ach-label">Govt. of India</span>
+                      <h4 className="ach-title">UI Design</h4>
+                      <p className="ach-org">Ministry of Electronics & IT</p>
+                    </div>
+                  </div>
+                  <div className="ach-footer">
+                    <span className="ach-badge-pill">Certified</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ach-star-icon">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
