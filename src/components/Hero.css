@@ -211,6 +211,16 @@
   color: var(--color-text-primary);
 }
 
+/* Slash between UI and UX — smaller so it doesn't overlap the calligraphy line */
+.big-text-slash {
+  font-size: 0.78em;
+  font-weight: 800;
+  vertical-align: middle;
+  opacity: 0.85;
+  letter-spacing: 0;
+  margin: 0 0.02em;
+}
+
 .sub-text {
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.4vw, 1.3rem);
@@ -475,7 +485,19 @@
 /* Mobile */
 @media (max-width: 768px) {
   .hero-bg img {
-    object-position: 60% top;
+    /* Center on the subject rather than pulling it to the right */
+    object-position: center top;
+  }
+
+  /* Lighten the overlay so the background photo is clearly visible.
+     On desktop the left-side gradient is useful for text contrast, but
+     on mobile it blacks out the entire narrow viewport. */
+  .hero-bg-overlay {
+    background:
+      /* Very light top fade for navbar only */
+      linear-gradient(to bottom, rgba(13, 13, 13, 0.35) 0%, transparent 12%),
+      /* Bottom fade so text remains readable — softer than desktop */
+      linear-gradient(to top, var(--color-bg) 0%, rgba(13, 13, 13, 0.7) 18%, rgba(13, 13, 13, 0.2) 45%, transparent 70%);
   }
 
   .hero-content {

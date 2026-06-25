@@ -94,7 +94,7 @@ const Hero = () => {
           <h1 className="hero-heading" id="hero-heading">
             <span className="calligraphy-text">Creative</span>
             <br />
-            <span className="big-text">UI/UX</span>
+            <span className="big-text">UI<span className="big-text-slash">/</span>UX</span>
             <br />
             <span className="sub-text">
               &amp; Visual Designer
@@ -112,7 +112,7 @@ const Hero = () => {
             aesthetics and functionality.
           </p>
 
-          <a href="#work" className="cta-button" id="cta-view-work">
+          <a href="#experience-section" onClick={(e) => { e.preventDefault(); document.getElementById('experience-section')?.scrollIntoView({ behavior: 'smooth' }) }} className="cta-button" id="cta-view-work">
             <span className="cta-arrow">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path
