@@ -75,7 +75,7 @@ const Hero = () => {
       <div className="hero-bg" id="hero-bg" ref={portraitRef}>
         <img
           src={heroBg}
-          alt="Aayush Kanojia — Creative Developer & UI/UX Designer"
+          alt="Aayush Kanojia — Creative UI/UX Designer"
           loading="eager"
           draggable="false"
         />
@@ -107,7 +107,7 @@ const Hero = () => {
         {/* Right Column */}
         <div className="hero-right" id="hero-right">
           <p className="hero-description" id="hero-description">
-            Hi, I'm Aayush Kanojia — a creative developer and designer
+            Hi, I'm Aayush Kanojia — a creative designer
             passionate about building modern digital experiences that combine
             aesthetics and functionality.
           </p>

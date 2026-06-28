@@ -1,0 +1,531 @@
+/* ============================================
+   PROJECTS — Auto-Scroll Carousel + Glassmorphism
+   ============================================ */
+
+.projects-section {
+  position: relative;
+  background: #0a0a0e;
+  padding-top: clamp(100px, 12vh, 160px);
+  padding-bottom: clamp(60px, 8vh, 100px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ── Ambient glows ──────────────────────────────────────── */
+.projects-ambient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(160px);
+  pointer-events: none;
+  z-index: 1;
+}
+.projects-ambient--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(118, 75, 162, 0.08) 0%,
+    transparent 70%
+  );
+  top: -10%;
+  right: 10%;
+  animation: projectsAmbientFloat 18s ease-in-out infinite;
+}
+.projects-ambient--2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(
+    circle,
+    rgba(245, 87, 108, 0.06) 0%,
+    transparent 70%
+  );
+  bottom: -5%;
+  left: 5%;
+  animation: projectsAmbientFloat 22s ease-in-out infinite reverse;
+}
+@keyframes projectsAmbientFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+}
+
+/* ── Section Header ────────────────────────────────────── */
+.projects-header {
+  position: relative;
+  z-index: 3;
+  padding: 0 var(--section-padding);
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth);
+}
+.projects-section--visible .projects-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.projects-header-left {
+  flex: 1;
+}
+
+.projects-index {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8b5cf6;
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+.projects-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+.projects-title-accent {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.projects-header-right {
+  flex-shrink: 0;
+  text-align: right;
+  max-width: 340px;
+}
+.projects-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.projects-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  padding: 0.65rem 1.4rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.35s var(--ease-smooth);
+  text-decoration: none;
+}
+.projects-view-all:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.projects-view-all svg {
+  transition: transform 0.3s var(--ease-smooth);
+}
+.projects-view-all:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   CAROUSEL — GSAP-driven continuous auto-scroll
+   ============================================================ */
+
+.projects-carousel-wrapper {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  cursor: none; /* Hide default cursor, we use custom */
+  /* Fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+.projects-carousel-track {
+  display: flex;
+  gap: clamp(1.5rem, 2.5vw, 2rem);
+  width: max-content;
+  will-change: transform;
+}
+
+/* ============================================================
+   GLASSMORPHISM CURSOR — follows mouse over carousel
+   ============================================================ */
+
+.projects-cursor {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  /* Center on mouse */
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition:
+    transform 0.35s var(--ease-smooth),
+    opacity 0.35s var(--ease-smooth);
+}
+.projects-cursor--active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.projects-cursor span {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   PROJECT CARD — Glassmorphism design
+   ============================================================ */
+
+.project-card {
+  flex-shrink: 0;
+  width: clamp(320px, 28vw, 420px);
+  transition: transform 0.5s var(--ease-smooth);
+}
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Glassmorphism card container */
+.project-card-glass {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: none;
+
+  /* Glassmorphism */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    background 0.4s ease;
+}
+.project-card:hover .project-card-glass {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(139, 92, 246, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Accent gradient glow */
+.project-card-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--proj-gradient);
+  opacity: 0.06;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.project-card:hover .project-card-glow {
+  opacity: 0.15;
+}
+
+/* Background image with accent tint */
+.project-card-bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(4px);
+  transition: opacity 0.5s ease;
+}
+.project-card-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--proj-gradient);
+  opacity: 0.35;
+  mix-blend-mode: color;
+}
+.project-card:hover .project-card-bg-image {
+  opacity: 0.4;
+}
+
+/* ── Browser Mockup inside card ────────────────────────── */
+.project-card-mockup {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  width: 82%;
+  background: #0f0f16;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  transition:
+    transform 0.5s var(--ease-smooth),
+    box-shadow 0.5s var(--ease-smooth);
+}
+.project-card:hover .project-card-mockup {
+  transform: translate(-50%, -53%) scale(0.88);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+}
+
+.mockup-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.mockup-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+.mockup-dot:first-child {
+  background: rgba(255, 87, 87, 0.55);
+}
+.mockup-dot:nth-child(2) {
+  background: rgba(255, 196, 87, 0.55);
+}
+.mockup-dot:nth-child(3) {
+  background: rgba(87, 255, 135, 0.55);
+}
+.mockup-url-bar {
+  flex: 1;
+  height: 18px;
+  margin-left: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mockup-image {
+  width: 100%;
+  height: calc(100% - 35px); /* approximate height minus browser bar */
+  object-fit: cover;
+  display: block;
+}
+
+.mockup-content {
+  padding: 14px;
+}
+.mockup-hero-block {
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  background: var(--proj-gradient);
+  opacity: 0.4;
+  margin-bottom: 12px;
+}
+.mockup-text-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.mockup-line {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.mockup-line--long {
+  width: 90%;
+}
+.mockup-line--medium {
+  width: 70%;
+}
+.mockup-line--short {
+  width: 45%;
+}
+.mockup-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.mockup-grid-item {
+  height: 35px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ── Card bottom info overlay ──────────────────────────── */
+.project-card-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+  z-index: 3;
+}
+.project-card-category {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.project-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ── Bottom markers ────────────────────────────────────── */
+.projects-markers {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 1400px;
+  margin: clamp(2rem, 4vw, 3.5rem) auto 0;
+  padding: 0 var(--section-padding);
+  position: relative;
+  z-index: 3;
+}
+.projects-marker {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.1);
+  user-select: none;
+}
+
+/* ============================================================
+   RESPONSIVE — mobile: vertical stack, no auto-scroll
+   ============================================================ */
+@media (max-width: 768px) {
+  .projects-section {
+    padding-top: clamp(80px, 10vh, 120px);
+    padding-bottom: var(--space-xl);
+  }
+
+  .projects-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .projects-header-right {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .projects-carousel-wrapper {
+    cursor: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .projects-carousel-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projects-carousel-track {
+    padding: 0 var(--section-padding);
+    gap: var(--space-md);
+  }
+
+  .project-card {
+    width: 280px;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+
+  .projects-cursor {
+    display: none;
+  }
+
+  .projects-markers {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .project-card {
+    width: clamp(280px, 35vw, 350px);
+  }
+}

@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Experience from './components/Experience'
-import Services from './components/Services'
-import About from './components/About'
-import Contact from './components/Contact'
+import Home from './pages/Home'
+import AllProjects from './pages/AllProjects'
+import ProjectDetail from './pages/ProjectDetail'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -18,12 +17,13 @@ function App() {
 
   return (
     <div className={`app ${isLoaded ? 'app--loaded' : ''}`}>
-      <Navbar />
-      <Hero />
-      <Experience />
-      <Services />
-      <About />
-      <Contact />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<AllProjects />} />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

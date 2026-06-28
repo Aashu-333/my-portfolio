@@ -24,7 +24,7 @@ const experiences = [
     period: 'Jan 2024 — Present',
     type: 'Full-time',
     highlights: [
-      'Cross-Functional Collaboration: Partner closely with Product Managers, Developers, and Marketing teams to translate complex business requirements and high-level user needs into intuitive, user-centric interface designs.',
+      'Cross-Functional Collaboration: Partner closely with Product Managers, Engineers, and Marketing teams to translate complex business requirements and high-level user needs into intuitive, user-centric interface designs.',
       'Design Systems & Consistency: Conceptualize, build, and maintain scalable design systems, component libraries, and style guides to ensure visual consistency and seamless brand experiences across all digital touchpoints.',
       'End-to-End Product Design: Own the full product design lifecycle, from mapping out comprehensive user flows and creating low-fidelity wireframes to delivering interactive, high-fidelity prototypes ready for engineering handoff.',
       'User Journey Optimization: Conduct iterative user flow analysis to identify friction points within the educational platform, refining layouts and interactions to delight users and improve overall conversion rates.',
@@ -363,4 +363,3 @@ const Experience = () => {
 }
 
 export default Experience
-
