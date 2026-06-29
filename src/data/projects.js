@@ -3,8 +3,12 @@ import img2 from '../assets/PROJECTS/siecindia.png'
 import img3 from '../assets/PROJECTS/ScholarTest.png'
 import img4 from '../assets/PROJECTS/studyabroadloans.png'
 import img5 from '../assets/PROJECTS/CRMportal.png'
-import img6 from '../assets/PROJECTS/socialmedia.JPG'
+import img6 from '../assets/PROJECTS/siec_organizer.png'
 import img7 from '../assets/PROJECTS/sieclandingpage.png'
+import img8 from '../assets/PROJECTS/socialmedia.JPG'
+import img9 from '../assets/PROJECTS/Pine_n_teak_desktop.png'
+import img10 from '../assets/PROJECTS/event_page.png'
+import img11 from '../assets/PROJECTS/International_education_fair_2025.png'
 
 export const projects = [
   {
@@ -59,7 +63,7 @@ export const projects = [
     description: 'Interior design studio website with elegant portfolio layouts.',
     gradient: 'linear-gradient(135deg, #1136b1ff 0%, #0d1c6eff 100%)',
     accent: '#15ef11ff',
-    image: null,
+    image: img6,
   },
   {
     id: 7,
@@ -77,6 +81,33 @@ export const projects = [
     description: 'Interior design studio website with elegant portfolio layouts.',
     gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
     accent: '#fbc2eb',
-    image: img6,
+    image: img8,
+  },
+  {
+    id: 9,
+    title: 'Pine n teak',
+    category: 'Web Design',
+    description: 'Interior design studio website with elegant portfolio layouts.',
+    gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
+    accent: '#ffbea9ff',
+    image: img9,
+  },
+  {
+    id: 10,
+    title: 'Event landing page siec migration',
+    category: 'Web Design',
+    description: 'Interior design studio website with elegant portfolio layouts.',
+    gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
+    accent: '#ffbea9ff',
+    image: img10,
+  },
+  {
+    id: 11,
+    title: 'International education fair 2025',
+    category: 'Web Design',
+    description: 'Interior design studio website with elegant portfolio layouts.',
+    gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
+    accent: '#ffbea9ff',
+    image: img11,
   },
 ]
