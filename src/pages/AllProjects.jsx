@@ -28,7 +28,7 @@ const AllProjects = () => {
   return (
     <div className="all-projects-page">
       <div className="all-projects-header">
-        <h1>All Projects</h1>
+        <h1>All <span className='heading-projects'>Projects</span></h1>
         <p>A complete look at all of our featured case studies, designs, and development work.</p>
       </div>
 

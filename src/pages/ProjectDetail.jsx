@@ -13,7 +13,22 @@ const ProjectDetail = () => {
   const hasShowcase = project?.showcaseImages || project?.features || project?.palette
 
   const projectLinks = project.liveUrl.split(",");
-  console.log(projectLinks);
+
+  // Helper to detect Instagram links and extract handle
+  const getInstaHandle = (url) => {
+    const match = url.match(/instagram\.com\/([^?/]+)/)
+    return match ? `@${match[1]}` : null
+  }
+
+  const isInstaProject = projectLinks.some(link => link.includes('instagram.com'))
+
+  const InstaIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="2"/>
+      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+    </svg>
+  )
   
 
   useEffect(() => {
@@ -122,11 +137,18 @@ const ProjectDetail = () => {
 
           <div className="detail-actions">
             {project.liveUrl ? (
-              projectLinks.map((ele, index) => (
-              <a key={index} href={ele} target="_blank" rel="noopener noreferrer" className="detail-launch-btn">
-                View Live Site {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
-              </a>
-              ))
+              projectLinks.map((ele, index) => {
+                const handle = getInstaHandle(ele)
+                return handle ? (
+                  <a key={index} href={ele} target="_blank" rel="noopener noreferrer" className="detail-launch-btn detail-launch-btn--insta">
+                    <InstaIcon /> {handle}
+                  </a>
+                ) : (
+                  <a key={index} href={ele} target="_blank" rel="noopener noreferrer" className="detail-launch-btn">
+                    View Live Site {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
+                  </a>
+                )
+              })
             ) : (
               <a href="#" className="detail-launch-btn">Launch Project</a>
             )}
@@ -317,11 +339,20 @@ const ProjectDetail = () => {
                 <div className="sc-cta-card">
                   <h2>See it live.</h2>
                   <p>This project is live and serving real users right now.</p>
-                  {projectLinks.map((link, index) => (
-                    <a key={index} href={link} target="_blank" rel="noopener noreferrer" className="sc-cta-btn">
-                      Visit {project.title} {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
-                    </a>
-                  ))}
+                  <div className="sc-cta-links">
+                    {projectLinks.map((link, index) => {
+                      const handle = getInstaHandle(link)
+                      return handle ? (
+                        <a key={index} href={link} target="_blank" rel="noopener noreferrer" className="sc-cta-btn sc-cta-btn--insta">
+                          <InstaIcon /> {handle}
+                        </a>
+                      ) : (
+                        <a key={index} href={link} target="_blank" rel="noopener noreferrer" className="sc-cta-btn">
+                          Visit {project.title} {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
+                        </a>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             </section>
