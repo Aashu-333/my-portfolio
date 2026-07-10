@@ -175,7 +175,7 @@ const Projects = () => {
           <div className="projects-header-left">
             <span className="projects-index">04 / PROJECTS</span>
             <h2 className="projects-title">
-              Selected <span className="projects-title-accent">Works</span>
+               Design <span className="projects-title-accent">Works</span>
             </h2>
           </div>
           <div className="projects-header-right">

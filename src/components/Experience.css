@@ -767,7 +767,7 @@
 .cert-graphic-area {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   align-items: flex-end;
   margin-top: auto;
 }

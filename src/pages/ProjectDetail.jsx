@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { projects } from '../data/projects'
 import './ProjectDetail.css'
 
+
 const ProjectDetail = () => {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -10,6 +11,10 @@ const ProjectDetail = () => {
 
   const project = projects.find(p => p.id === parseInt(id))
   const hasShowcase = project?.showcaseImages || project?.features || project?.palette
+
+  const projectLinks = project.liveUrl.split(",");
+  console.log(projectLinks);
+  
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -117,9 +122,11 @@ const ProjectDetail = () => {
 
           <div className="detail-actions">
             {project.liveUrl ? (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="detail-launch-btn">
-                View Live Site ↗
+              projectLinks.map((ele, index) => (
+              <a key={index} href={ele} target="_blank" rel="noopener noreferrer" className="detail-launch-btn">
+                View Live Site {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
               </a>
+              ))
             ) : (
               <a href="#" className="detail-launch-btn">Launch Project</a>
             )}
@@ -310,9 +317,11 @@ const ProjectDetail = () => {
                 <div className="sc-cta-card">
                   <h2>See it live.</h2>
                   <p>This project is live and serving real users right now.</p>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="sc-cta-btn">
-                    Visit {project.title} ↗
-                  </a>
+                  {projectLinks.map((link, index) => (
+                    <a key={index} href={link} target="_blank" rel="noopener noreferrer" className="sc-cta-btn">
+                      Visit {project.title} {projectLinks.length > 1 ? `${index + 1}` : ''} ↗
+                    </a>
+                  ))}
                 </div>
               </div>
             </section>

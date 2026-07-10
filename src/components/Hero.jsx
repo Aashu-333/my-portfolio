@@ -112,7 +112,7 @@ const Hero = () => {
             aesthetics and functionality.
           </p>
 
-          <a href="#experience-section" onClick={(e) => { e.preventDefault(); document.getElementById('experience-section')?.scrollIntoView({ behavior: 'smooth' }) }} className="cta-button" id="cta-view-work">
+          <a href="#projects-section" onClick={(e) => { e.preventDefault(); document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' }) }} className="cta-button" id="cta-view-work">
             <span className="cta-arrow">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path

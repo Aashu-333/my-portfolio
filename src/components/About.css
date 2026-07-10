@@ -61,7 +61,7 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 600;
-  color: #8b5cf6;
+  color: var(--color-accent);
   letter-spacing: 0.15em;
   display: block;
   margin-bottom: var(--space-xs);

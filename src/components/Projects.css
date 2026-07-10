@@ -85,7 +85,7 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 600;
-  color: #8b5cf6;
+  color: var(--color-accent);
   letter-spacing: 0.15em;
   display: block;
   margin-bottom: var(--space-sm);
@@ -104,7 +104,7 @@
   font-style: italic;
   font-weight: 400;
   text-transform: none;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #fbbf24 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

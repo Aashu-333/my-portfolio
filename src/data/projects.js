@@ -31,6 +31,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #059c00ff 0%, #4ba24eff 100%)',
     accent: '#8fd287ff',
     image: img1,
+    liveUrl: "https://www.siecmigration.com/"
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #a1fb93ff 0%, #9bf557ff 100%)',
     accent: '#9deb8dff',
     image: img2,
+    liveUrl: "https://www.siecindia.com/"
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #791f99ff 0%, #ced843ff 100%)',
     accent: '#6e00feff',
     image: img3,
+    liveUrl: "https://www.siectestmasters.com/"
   },
   {
     id: 4,
@@ -127,6 +130,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #708bd5ff 0%, #79abc4ff 100%)',
     accent: '#fee140',
     image: img5,
+    liveUrl: "#"
   },
   {
     id: 6,
@@ -136,6 +140,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #1136b1ff 0%, #0d1c6eff 100%)',
     accent: '#15ef11ff',
     image: img6,
+    liveUrl: "#"
   },
   {
     id: 7,
@@ -145,6 +150,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
     accent: '#fbc2eb',
     image: img7,
+    liveUrl: "#"
   },
   {
     id: 8,
@@ -154,6 +160,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
     accent: '#fbc2eb',
     image: img8,
+    liveUrl: "https://www.instagram.com/siecmigration?igsh=eXl6dnIzejNqOXIw,https://www.instagram.com/siec.canada?igsh=MWU3bzQwNGRpeTVvNg=="
   },
   {
     id: 9,
@@ -163,6 +170,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
     accent: '#ffbea9ff',
     image: img9,
+    liveUrl: "#"
   },
   {
     id: 10,
@@ -172,6 +180,7 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
     accent: '#ffbea9ff',
     image: img10,
+    liveUrl: "#"
   },
   {
     id: 11,
@@ -181,5 +190,6 @@ export const projects = [
     gradient: 'linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)',
     accent: '#ffbea9ff',
     image: img11,
+    liveUrl: "#"
   },
 ]

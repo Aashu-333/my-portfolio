@@ -32,10 +32,8 @@ const Contact = () => {
   }
 
   const socials = [
-    { name: 'LinkedIn', url: 'https://linkedin.com/' },
-    { name: 'GitHub', url: 'https://github.com/' },
-    { name: 'Dribbble', url: 'https://dribbble.com/' },
-    { name: 'Instagram', url: 'https://instagram.com/' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/aayush-kanojia-65b5b015b/' },
+    { name: 'Instagram', url: 'https://instagram.com/theshreddedartist' },
   ]
 
   return (
@@ -56,7 +54,9 @@ const Contact = () => {
             
             {/* Interactive Email Box */}
             <div className="email-box" onClick={copyEmail} title="Click to copy email address">
-              <span className="email-address">aayushkanojia@gmail.com</span>
+              <span className="email-address">
+                aayushknojia1999@gmail.com
+              </span>
               <button className="copy-btn" aria-label="Copy email address">
                 {copied ? (
                   <span className="copy-feedback">Copied!</span>
