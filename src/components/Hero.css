@@ -334,6 +334,8 @@
 }
 
 .hero-name-letter {
+  --letter-glow: 0;
+
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 13.5vw, 13rem);
   font-weight: 600;
@@ -344,16 +346,16 @@
   user-select: none;
   white-space: nowrap;
 
-  /* Glassmorphism — frosted glass fill with glossy shine */
+  /* Glassmorphism fill — driven by --letter-glow (0 = default, 1 = full gloss) */
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.12) 30%,
-    rgba(255, 255, 255, 0.06) 50%,
-    rgba(255, 255, 255, 0.2) 70%,
-    rgba(255, 255, 255, 0.4) 100%
+    rgba(255, 255, 255, calc(0.45 + 0.45 * var(--letter-glow))) 0%,
+    rgba(255, 255, 255, calc(0.12 + 0.38 * var(--letter-glow))) 30%,
+    rgba(255, 255, 255, calc(0.06 + 0.34 * var(--letter-glow))) 50%,
+    rgba(255, 255, 255, calc(0.2  + 0.45 * var(--letter-glow))) 70%,
+    rgba(255, 255, 255, calc(0.4  + 0.5  * var(--letter-glow))) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -362,29 +364,13 @@
   filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.1));
 
   animation: nameReveal 0.9s var(--ease-smooth) both;
-  transition:
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter 0.35s ease,
-    -webkit-text-stroke 0.35s ease;
-}
 
-.hero-name-letter:hover {
-  transform: translateY(-14px) scale(1.08);
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
-  background: linear-gradient(
-    160deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.35) 30%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.5) 70%,
-    rgba(255, 255, 255, 0.9) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter:
-    drop-shadow(0 0 20px rgba(255, 255, 255, 0.45))
-    drop-shadow(0 0 50px rgba(255, 122, 26, 0.25))
-    drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  /* Fluid transitions for the wave effect */
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s ease,
+    -webkit-text-stroke 0.4s ease;
 }
 
 @keyframes nameReveal {

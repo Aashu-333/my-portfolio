@@ -6,6 +6,7 @@ const Hero = () => {
   const heroRef = useRef(null)
   const portraitRef = useRef(null)
   const glowRef = useRef(null)
+  const letterRefs = useRef([])
 
   // Parallax effect on portrait
   const handleMouseMove = useCallback((e) => {
@@ -129,10 +130,57 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Large Name Typography */}
-      <div className="hero-name-container" id="hero-name">
+      {/* Large Name Typography — Fluid Wave */}
+      <div
+        className="hero-name-container"
+        id="hero-name"
+        onMouseMove={(e) => {
+          const mouseX = e.clientX
+          requestAnimationFrame(() => {
+            letterRefs.current.forEach((el) => {
+              if (!el) return
+              const rect = el.getBoundingClientRect()
+              const letterCenterX = rect.left + rect.width / 2
+              const dist = Math.abs(mouseX - letterCenterX)
+              const radius = rect.width * 2.2
+              const influence = Math.max(0, 1 - dist / radius)
+              // Smooth easing curve for more natural falloff
+              const eased = influence * influence * (3 - 2 * influence)
+
+              const lift = -18 * eased
+              const scale = 1 + 0.1 * eased
+              const strokeAlpha = 0.25 + 0.55 * eased
+
+              el.style.transform = `translateY(${lift}px) scale(${scale})`
+              el.style.webkitTextStroke = `1px rgba(255,255,255,${strokeAlpha})`
+              el.style.setProperty('--letter-glow', eased.toString())
+              el.style.filter = [
+                `drop-shadow(0 0 ${30 * eased}px rgba(255,255,255,${0.6 * eased}))`,
+                `drop-shadow(0 0 ${60 * eased}px rgba(255,255,255,${0.3 * eased}))`,
+                `drop-shadow(0 0 ${40 * eased}px rgba(255,122,26,${0.2 * eased}))`,
+                `brightness(${1 + 0.6 * eased})`
+              ].join(' ')
+            })
+          })
+        }}
+        onMouseLeave={() => {
+          letterRefs.current.forEach(el => {
+            if (el) {
+              el.style.transform = ''
+              el.style.filter = ''
+              el.style.webkitTextStroke = ''
+              el.style.setProperty('--letter-glow', '0')
+            }
+          })
+        }}
+      >
         {'AAYUSH'.split('').map((letter, i) => (
-          <span key={i} className="hero-name-letter" style={{ animationDelay: `${0.5 + i * 0.08}s` }}>
+          <span
+            key={i}
+            ref={el => (letterRefs.current[i] = el)}
+            className="hero-name-letter"
+            style={{ animationDelay: `${0.5 + i * 0.08}s`, '--letter-glow': '0' }}
+          >
             {letter}
           </span>
         ))}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
+import CustomCursor from './components/CustomCursor'
 import Home from './pages/Home'
 import AllProjects from './pages/AllProjects'
 import ProjectDetail from './pages/ProjectDetail'
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <div className={`app ${isLoaded ? 'app--loaded' : ''}`}>
+      <CustomCursor />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
