@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import './Services.css'
 
-import imgWebDesign from '../assets/services/Website_design.PNG'
-import imgUiUx from '../assets/services/UiUx_design.PNG'
-import imgVisualDirection from '../assets/services/Visual_direction.PNG'
-import imgMotionInteraction from '../assets/services/Motion_interaction.PNG'
-import imgInfoArch from '../assets/services/Information_architecture.PNG'
+import imgWebDesign from '../assets/Services/Website_design.PNG'
+import imgUiUx from '../assets/Services/UiUx_design.PNG'
+import imgVisualDirection from '../assets/Services/Visual_direction.PNG'
+import imgMotionInteraction from '../assets/Services/Motion_interaction.PNG'
+import imgInfoArch from '../assets/Services/Information_architecture.PNG'
 
 const services = [
   {
