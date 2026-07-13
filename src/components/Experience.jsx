@@ -3,18 +3,6 @@ import "./Experience.css";
 
 import logoNIFT from "../assets/icons/NIFT_Logo.svg";
 
-/* 3D icon images */
-import iconFigma from "../assets/icons/figma.png";
-import iconClaude from "../assets/icons/claude.png";
-import iconAdobeCC from "../assets/icons/adobecc.png";
-import iconIllustrator from "../assets/icons/illustrator.png";
-import iconPhotoshop from "../assets/icons/photoshop.png";
-import iconChatGPT from "../assets/icons/chatgpt.png";
-import iconLovable from "../assets/icons/lovable.png";
-import iconStitch from "../assets/icons/stitch.png";
-import iconFramer from "../assets/icons/framer.png";
-import iconWebflow from "../assets/icons/webflow.png";
-
 const experiences = [
     {
         id: 1,
@@ -155,53 +143,6 @@ const ExperienceCard = ({ exp, index }) => {
     );
 };
 
-/* Floating tool icons config — position, size, animation */
-const iconMap = {
-    figma: iconFigma,
-    claude: iconClaude,
-    adobecc: iconAdobeCC,
-    illustrator: iconIllustrator,
-    photoshop: iconPhotoshop,
-    chatgpt: iconChatGPT,
-    lovable: iconLovable,
-    stitch: iconStitch,
-    framer: iconFramer,
-    webflow: iconWebflow,
-};
-
-const floatingIcons = [
-    { name: "figma", top: "3%", left: "8%", size: 100, delay: 0, dur: 7 },
-    { name: "claude", top: "8%", left: "72%", size: 90, delay: 1.2, dur: 9 },
-    { name: "adobecc", top: "22%", left: "85%", size: 95, delay: 0.5, dur: 8 },
-    {
-        name: "illustrator",
-        top: "18%",
-        left: "18%",
-        size: 88,
-        delay: 2,
-        dur: 7.5,
-    },
-    {
-        name: "photoshop",
-        top: "40%",
-        left: "12%",
-        size: 105,
-        delay: 0.8,
-        dur: 9.5,
-    },
-    {
-        name: "chatgpt",
-        top: "38%",
-        left: "78%",
-        size: 92,
-        delay: 1.5,
-        dur: 8.5,
-    },
-    { name: "lovable", top: "58%", left: "88%", size: 85, delay: 2.5, dur: 7 },
-    { name: "stitch", top: "55%", left: "5%", size: 90, delay: 0.3, dur: 10 },
-    { name: "framer", top: "75%", left: "15%", size: 88, delay: 1.8, dur: 8 },
-    { name: "webflow", top: "80%", left: "75%", size: 110, delay: 0.7, dur: 9 },
-];
 
 const Experience = () => {
     const sectionRef = useRef(null);
@@ -242,31 +183,6 @@ const Experience = () => {
                 <div className="grid-glow grid-glow--3" />
                 <div className="exp-grid-bg" />
 
-                {/* Floating Tool Icons */}
-                {floatingIcons.map((icon) => (
-                    <div
-                        key={icon.name}
-                        className="floating-icon"
-                        style={{
-                            top: icon.top,
-                            left: icon.left,
-                            right: icon.right,
-                            "--float-dur": `${icon.dur}s`,
-                            "--float-delay": `${icon.delay}s`,
-                            width: icon.size + "px",
-                            height: icon.size + "px",
-                        }}
-                    >
-                        <img
-                            src={iconMap[icon.name]}
-                            alt={icon.name}
-                            className="floating-icon-img"
-                            width={icon.size}
-                            height={icon.size}
-                            draggable="false"
-                        />
-                    </div>
-                ))}
 
                 <div className="experience-container">
                     {/* Section Header */}
@@ -298,10 +214,21 @@ const Experience = () => {
                     </div>
 
                     {/* Education & Achievements Section */}
-                    <div className="edu-achievements-section">
-                        <h3 className="edu-section-title">
-                            Education & Achievements
-                        </h3>
+                    <div id="education-section" className="edu-achievements-section">
+                        <div className="edu-header">
+                            <span className="edu-index">
+                                03 / EDUCATION
+                            </span>
+                            <h2 className="edu-section-title">
+                                Education &{" "}
+                                <span className="edu-title-accent">
+                                    Achievements
+                                </span>
+                            </h2>
+                            <p className="edu-subtitle">
+                                Academic foundations and professional certifications that shape my design expertise.
+                            </p>
+                        </div>
                         <div className="edu-achievements-grid">
                             {/* B.Des Card (Left, wider) */}
                             <div className="edu-big-card">

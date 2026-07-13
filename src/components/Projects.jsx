@@ -173,7 +173,7 @@ const Projects = () => {
       <div className="projects-header">
         <div className="projects-header-inner">
           <div className="projects-header-left">
-            <span className="projects-index">04 / PROJECTS</span>
+            <span className="projects-index">06 / PROJECTS</span>
             <h2 className="projects-title">
                Design <span className="projects-title-accent">Works</span>
             </h2>

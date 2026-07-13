@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Experience from '../components/Experience'
+import Toolkit from '../components/Toolkit'
 import Services from '../components/Services'
 import Projects from '../components/Projects'
 import About from '../components/About'
@@ -13,6 +14,7 @@ const Home = () => {
       <Navbar />
       <Hero />
       <Experience />
+      <Toolkit />
       <Services />
       <Projects />
       <About />

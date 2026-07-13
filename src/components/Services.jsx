@@ -222,7 +222,7 @@ const Services = () => {
       <div className="services-container">
         {/* Section Header */}
         <div className="services-header">
-          <span className="services-index">03 / SERVICES</span>
+          <span className="services-index">05 / SERVICES</span>
           <h2 className="services-title">
             Core <span className="services-title-accent">Capabilities</span>
           </h2>

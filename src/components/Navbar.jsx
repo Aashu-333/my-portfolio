@@ -4,6 +4,8 @@ import './Navbar.css'
 const navItems = [
   { id: 'hero-section', label: 'Home' },
   { id: 'experience-section', label: 'Experience' },
+  { id: 'education-section', label: 'Education' },
+  { id: 'toolkit-section', label: 'Toolkit' },
   { id: 'services-section', label: 'Services' },
   { id: 'projects-section', label: 'Projects' },
   { id: 'about-section', label: 'About' },
