@@ -26,7 +26,7 @@ export const projects = [
     title: "SIEC Migration",
     category: "Web Design",
     description:
-      "A premium food & restaurant brand experience with immersive visuals.",
+      "",
     gradient: "linear-gradient(135deg, #059c00ff 0%, #4ba24eff 100%)",
     accent: "#8fd287ff",
     image: img1,
@@ -37,7 +37,7 @@ export const projects = [
     title: "SIEC India",
     category: "UI/UX Design",
     description:
-      "A modern analytics dashboard with real-time data visualization.",
+      "",
     gradient: "linear-gradient(135deg, #a1fb93ff 0%, #9bf557ff 100%)",
     accent: "#9deb8dff",
     image: img2,
@@ -48,7 +48,7 @@ export const projects = [
     title: "Scholastic Testmasters",
     category: "Web Design",
     description:
-      "Luxury fashion e-commerce platform with elegant product showcases.",
+      "",
     gradient: "linear-gradient(135deg, #791f99ff 0%, #ced843ff 100%)",
     accent: "#6e00feff",
     image: img3,
@@ -59,7 +59,7 @@ export const projects = [
     title: "Study Abroad Loans",
     category: "Web Design",
     description:
-      "A fintech × edtech platform for SIEC Group — helping Indian students finance overseas education with 50+ lending partners.",
+      "",
     gradient: "linear-gradient(135deg, #436fe9ff 0%, #5d76bbff 100%)",
     accent: "#f9e638ff",
     image: img4,
@@ -152,7 +152,7 @@ export const projects = [
     title: "Gradlynk CRM",
     category: "Software Design",
     description:
-      "Music streaming platform with immersive audio-visual experience.",
+      "",
     gradient: "linear-gradient(135deg, #708bd5ff 0%, #79abc4ff 100%)",
     accent: "#fee140",
     image: img5,
@@ -163,7 +163,7 @@ export const projects = [
     title: "SIEC Organizor",
     category: "App Design",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #1136b1ff 0%, #0d1c6eff 100%)",
     accent: "#15ef11ff",
     image: img6,
@@ -174,18 +174,18 @@ export const projects = [
     title: "SIEC Landing Pages",
     category: "Web Design",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
     accent: "#fbc2eb",
     image: img7,
-    liveUrl: "#",
+    liveUrl: "https://www.siecmigration.com/landing/visa-services",
   },
   {
     id: 8,
     title: "Social Media Posts",
     category: "Social Media Marketing",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
     accent: "#fbc2eb",
     image: img8,
@@ -197,7 +197,7 @@ export const projects = [
     title: "Pine n teak",
     category: "Web Design",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)",
     accent: "#ffbea9ff",
     image: img9,
@@ -205,24 +205,24 @@ export const projects = [
   },
   {
     id: 10,
-    title: "Event landing page siec migration",
+    title: "Event landing page siec",
     category: "Web Design",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)",
     accent: "#ffbea9ff",
     image: img10,
-    liveUrl: "#",
+    liveUrl: "https://www.siecmigration.com/australia-canada-migration-fair",
   },
   {
     id: 11,
-    title: "International education fair 2025",
+    title: "Education fair 2026",
     category: "Web Design",
     description:
-      "Interior design studio website with elegant portfolio layouts.",
+      "",
     gradient: "linear-gradient(135deg, #ec873eff 0%, #df803dff 100%)",
     accent: "#ffbea9ff",
     image: img11,
-    liveUrl: "#",
+    liveUrl: "https://www.siecindia.com/landing/australia-education-fair",
   },
 ];
