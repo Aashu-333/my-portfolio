@@ -8,6 +8,7 @@ import About from '../components/About'
 import FooterImage from '../components/FooterImage'
 import Contact from '../components/Contact'
 
+
 const Home = () => {
   return (
     <>

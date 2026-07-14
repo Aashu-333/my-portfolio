@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './Contact.css'
+import portfolioFooterImage from '../assets/portfolio/footer.png'
 
 const Contact = () => {
   const [copied, setCopied] = useState(false)
@@ -121,6 +122,11 @@ const Contact = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Still portfolio footer image */}
+        <div className="contact-portfolio-image">
+          <img src={portfolioFooterImage} alt="Portfolio Footer" className="contact-portfolio-img" />
         </div>
 
         {/* Footer info */}

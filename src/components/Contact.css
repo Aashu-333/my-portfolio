@@ -64,7 +64,7 @@
   grid-template-columns: 1.2fr 1fr;
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
-  padding-bottom: var(--space-2xl);
+  padding-bottom: 0;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -228,7 +228,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--space-xl);
+  padding-top: var(--space-md);
   font-family: var(--font-body);
   font-size: 0.82rem;
   color: var(--color-text-muted);
@@ -245,6 +245,21 @@
 .contact-section--visible .contact-right {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Still Portfolio Footer Image (No animation) */
+.contact-portfolio-image {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.contact-portfolio-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 /* Responsive */
