@@ -250,31 +250,81 @@
   animation: fadeSlideUp 0.8s var(--ease-smooth) 0.6s both;
 }
 
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  animation: fadeSlideUp 0.8s var(--ease-smooth) 0.8s both;
+}
+
 /* === CTA Button === */
-.cta-button {
+.cta-button,
+.resume-button {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.85rem 1.8rem 0.85rem 0.85rem;
-  background: var(--color-accent);
   border: none;
   border-radius: 100px;
   cursor: pointer;
   width: fit-content;
+  min-height: 54px;
   transition: all var(--duration-medium) var(--ease-smooth);
-  animation: fadeSlideUp 0.8s var(--ease-smooth) 0.8s both;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
-.cta-button::before {
+.cta-button {
+  background: var(--color-accent);
+  color: white;
+}
+
+.resume-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid transparent;
+  color: var(--color-text-primary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.cta-button::before,
+.resume-button::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
   border-radius: inherit;
   opacity: 0;
   transition: opacity var(--duration-medium) ease;
+  pointer-events: none;
+}
+
+.resume-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--resume-border-angle),
+    var(--color-accent),
+    white,
+    rgba(255, 255, 255, 0.35),
+    var(--color-accent)
+  );
+  pointer-events: none;
+  animation: resumeBorderSpin 2.8s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
 }
 
 .cta-button:hover {
@@ -285,15 +335,34 @@
     0 2px 8px rgba(255, 122, 26, 0.2);
 }
 
-.cta-button:hover::before {
+.resume-button:hover {
+  background: rgba(255, 122, 26, 0.14);
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 30px rgba(255, 122, 26, 0.26),
+    0 2px 8px rgba(255, 255, 255, 0.12);
+}
+
+.cta-button:hover::before,
+.resume-button:hover::before {
   opacity: 1;
 }
 
-.cta-button:active {
+.cta-button:active,
+.resume-button:active {
   transform: translateY(0);
 }
 
+.cta-button:focus-visible,
+.resume-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+}
+
 .cta-arrow {
+  position: relative;
+  z-index: 2;
   width: 36px;
   height: 36px;
   background: rgba(0, 0, 0, 0.2);
@@ -306,17 +375,36 @@
   transition: transform var(--duration-medium) var(--ease-smooth);
 }
 
+.resume-button .cta-arrow {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .cta-button:hover .cta-arrow {
   transform: translateX(3px);
 }
 
-.cta-text {
+.resume-button:hover .cta-arrow {
+  background: rgba(255, 122, 26, 0.24);
+  transform: translateY(3px);
+}
+
+.cta-text,
+.resume-text {
+  position: relative;
+  z-index: 2;
   font-family: var(--font-display);
   font-size: 0.92rem;
   font-weight: 600;
-  color: white;
   letter-spacing: -0.01em;
   white-space: nowrap;
+}
+
+.resume-text {
+  min-width: 4.25rem;
+}
+
+.cta-text {
+  min-width: 7rem;
 }
 
 /* === Large Name Typography === */
@@ -446,6 +534,18 @@
   }
 }
 
+@property --resume-border-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes resumeBorderSpin {
+  to {
+    --resume-border-angle: 360deg;
+  }
+}
+
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
@@ -522,7 +622,12 @@
     font-size: clamp(3rem, 18vw, 5rem);
   }
 
-  .cta-button {
+  .hero-actions {
+    width: 100%;
+  }
+
+  .cta-button,
+  .resume-button {
     padding: 0.7rem 1.5rem 0.7rem 0.7rem;
   }
 
