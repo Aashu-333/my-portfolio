@@ -82,9 +82,7 @@ const Contact = () => {
                     <polyline points="22,6 12,13 2,6" />
                   </svg>
                 </span>
-                <span className="email-address">
-                  aayushknojia1999@gmail.com
-                </span>
+                <span className="email-address">creativedes3@gmail.com</span>
               </div>
               <button className="copy-btn" aria-label="Copy email address">
                 {copied ? (

@@ -120,7 +120,7 @@ const Hero = () => {
                     </p>
                     <div className="hero-actions">
                         <a
-                            href="https://drive.google.com/file/d/1qy6FqiFtwdBtreYZQ4BOc2SX--Dut-NZ/view?usp=sharing"
+                            href="https://drive.google.com/file/d/1a0gvlanu7j2H3mObFVWN85Lp2vEeuI1q/view?usp=drivesdk"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="resume-button"
