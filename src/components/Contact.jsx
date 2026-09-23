@@ -27,7 +27,7 @@ const Contact = () => {
   }, [])
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('aayushkanojia@gmail.com')
+    navigator.clipboard.writeText('creativedes3@gmail.com')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
